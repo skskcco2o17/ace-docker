@@ -20,7 +20,7 @@ RUN tar xzf $ACE_INSTALL --absolute-names --exclude ace-11.\*/tools --strip-comp
 
 ARG BASE_IMAGE=ibmcom/mq:9.1.4.0-r1
 
-FROM ${BASE_IMAGE}
+FROM ibmcom/mq:9.1.4.0-r1
 
 ENV SUMMARY="Integration Server for App Connect Enterprise" \
     DESCRIPTION="Integration Server for App Connect Enterprise" \

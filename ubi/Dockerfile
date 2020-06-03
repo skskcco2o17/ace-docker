@@ -3,7 +3,7 @@ FROM golang:1.10.3 as builder
 WORKDIR /go/src/github.com/skskcco2o17/ace-docker/
 ARG IMAGE_REVISION="Not specified"
 ARG IMAGE_SOURCE="Not specified"
-COPY ../cmd/ ./cmd
+COPY cmd/ ./cmd
 COPY internal/ ./internal
 COPY vendor/ ./vendor
 RUN go build -ldflags "-X \"main.ImageCreated=$(date --iso-8601=seconds)\" -X \"main.ImageRevision=$IMAGE_REVISION\" -X \"main.ImageSource=$IMAGE_SOURCE\"" ./cmd/runaceserver/

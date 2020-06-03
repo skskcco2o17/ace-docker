@@ -1,5 +1,6 @@
-FROM golang:1.10.3 as builder
+ARG BASE_IMAGE=ibmcom/mq:9.1.4.0-r1
 
+FROM golang:1.10.3 as builder
 WORKDIR /go/src/github.com/ot4i/ace-docker/
 ARG IMAGE_REVISION="Not specified"
 ARG IMAGE_SOURCE="Not specified"
@@ -13,14 +14,13 @@ RUN go build ./cmd/chkacehealthy/
 RUN go test -v ./cmd/runaceserver/
 RUN go test -v ./internal/...
 RUN go vet ./cmd/... ./internal/...
-
 ARG ACE_INSTALL=ace-11.0.0.5.tar.gz
 WORKDIR /opt/ibm
 COPY deps/${ACE_INSTALL} .
 RUN mkdir ace-11
 RUN tar xzf $ACE_INSTALL --absolute-names --exclude ace-11.\*/tools --strip-components 1 --directory /opt/ibm/ace-11
 
-ARG BASE_IMAGE=ibmcom/mq:9.1.4.0-r1
+
 FROM ${BASE_IMAGE}
 
 ENV SUMMARY="Integration Server for App Connect Enterprise" \

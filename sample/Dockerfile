@@ -1,4 +1,4 @@
-FROM ace-mq:latest
+FROM ace:latest
 
 USER root
 

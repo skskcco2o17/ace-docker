@@ -18,11 +18,11 @@ RUN go vet ./cmd/... ./internal/...
 
 ARG ACE_INSTALL=ace-11.0.0.5.tar.gz
 WORKDIR /opt/ibm
-COPY deps/$ACE_INSTALL .
+COPY deps/${ACE_INSTALL} .
 RUN mkdir ace-11
 RUN tar xzf $ACE_INSTALL --absolute-names --exclude ace-11.\*/tools --strip-components 1 --directory /opt/ibm/ace-11
 
-FROM ibmcom/mq:9.1.4.0-r1
+FROM ${BASE_IMAGE}
 
 ENV SUMMARY="Integration Server for App Connect Enterprise" \
     DESCRIPTION="Integration Server for App Connect Enterprise" \

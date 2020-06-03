@@ -9,8 +9,3 @@ COPY bars_mq /home/aceuser/bars
 RUN su - mqm -c 'ace_compile_bars.sh'
 
 USER mqm
-
-FROM ace-only:latest
-
-COPY bars_aceonly /home/aceuser/bars
-RUN ace_compile_bars.sh

@@ -1,6 +1,6 @@
 FROM golang:1.10.3 as builder
 
-WORKDIR /go/src/github.com/ot4i/ace-docker/
+WORKDIR /go/src/github.com/skskcco2o17/ace-docker/
 ARG IMAGE_REVISION="Not specified"
 ARG IMAGE_SOURCE="Not specified"
 COPY cmd/ ./cmd
@@ -57,8 +57,8 @@ COPY --from=builder /opt/ibm/ace-11 /opt/ibm/ace-11
 RUN /opt/ibm/ace-11/ace make registry global accept license silently
 
 # Copy in PID1 process
-COPY --from=builder /go/src/github.com/ot4i/ace-docker/runaceserver /usr/local/bin/
-COPY --from=builder /go/src/github.com/ot4i/ace-docker/chkace* /usr/local/bin/
+COPY --from=builder /go/src/github.com/skskcco2o17/ace-docker/runaceserver /usr/local/bin/
+COPY --from=builder /go/src/github.com/skskcco2o17/ace-docker/chkace* /usr/local/bin/
 
 # Copy in script files
 COPY *.sh /usr/local/bin/
